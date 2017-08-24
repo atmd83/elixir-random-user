@@ -5,7 +5,6 @@ defmodule RandomUserTest do
   test "generate_user return a single user's data" do
 
     user = RandomUser.generate_user()
-IO.inspect user
     assert Enum.count(user) == 1
 
     user |> Enum.map(fn u ->

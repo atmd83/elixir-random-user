@@ -2,32 +2,35 @@ defmodule RandomUser.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :random_user,
-     version: "0.1.0",
-     elixir: "~> 1.4",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps()]
+    [
+      app: :random_user,
+      version: "0.2.0",
+      elixir: "~> 1.4",
+      build_embedded: Mix.env == :prod,
+      start_permanent: Mix.env == :prod,
+      package: package(),
+      deps: deps(),
+      name: "RandomUser",
+      description: "An Elixir library to generate fake/mock/random user profiles.",
+      source_url: "https://github.com/atmd83/elixir-random-user"
+    ]
   end
 
-  # Configuration for the OTP application
-  #
-  # Type "mix help compile.app" for more information
   def application do
-    # Specify extra applications you'll use from Erlang/Elixir
     [extra_applications: [:logger, :httpoison]]
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:my_dep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:my_dep, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
-  #
-  # Type "mix help deps" for more examples and options
+  defp package() do
+    [
+      name: "random_user",
+      files: ["lib", "mix.exs", "README.md"],
+      maintainers: ["Andrew Markham-Davies"],
+      licenses: ["Apache 2.0"],
+      links: %{"GitHub" => "https://github.com/atmd83/elixir-random-user"}
+    ]
+  end
+
   defp deps do
-    [{:httpoison, "~> 0.13"}, {:poison, "~> 3.1"}]
+    [{:httpoison, "~> 0.13"}, {:poison, "~> 3.1"}, {:ex_doc, "~> 0.14", only: :dev}]
   end
 end
